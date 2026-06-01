@@ -22,8 +22,10 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       authStore.expireSession();
 
-      if (window.location.pathname !== "/login") {
-        window.location.assign("/login");
+      const loginPath = `${import.meta.env.BASE_URL}login`;
+
+      if (window.location.pathname !== loginPath) {
+        window.location.assign(loginPath);
       }
     }
 
